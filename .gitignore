@@ -122,6 +122,13 @@ dist
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
 
+### VisualStudioCode ###
+.vscode/*      # Maybe .vscode/**/* instead - see comments
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
 # yarn v2
 .yarn/cache
 .yarn/unplugged

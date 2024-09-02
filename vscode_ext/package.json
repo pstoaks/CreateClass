@@ -1,0 +1,75 @@
+{
+  "name": "create_class",
+  "displayName": "C++ Create Class",
+  "description": "Creates C++ class files given a class name.",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.92.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "pstoaks.CreateClass",
+        "title": "Create Class"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "when": "explorerResourceIsFolder",
+          "command": "pstoaks.CreateClass",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Create Class",
+      "properties": {
+        "create_class.templateVars": {
+          "type": "object",
+          "default": {
+            "COPYRIGHT": "Copyright 2024 ACME, Inc.",
+            "AUTHOR": "Author Name"
+          },
+          "description": "Data object defining necessary values to be used in templates.",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "create_class.templatePath": {
+          "type": "string",
+          "default": "../cpp_templates",
+          "description": "Path to folder containing templates."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./ --excludeDirectories ./templates",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.7",
+    "@types/mustache": "^4.2.5",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.92.0",
+    "@typescript-eslint/eslint-plugin": "^7.14.1",
+    "@typescript-eslint/parser": "^7.11.0",
+    "@vscode/test-cli": "^0.0.9",
+    "@vscode/test-electron": "^2.4.0",
+    "eslint": "^8.57.0",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "mustache": "^4.2.0"
+  }
+}
