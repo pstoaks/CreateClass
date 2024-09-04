@@ -50,13 +50,11 @@ export function activate(context: vscode.ExtensionContext) {
                 const templatesFolderC = config.get('templatePath') as string;
                 const templatesFolder = getAbsolutePathOrUri(templatesFolderC, workspaceFolder);
                 const templates = await listFilesInFolder(templatesFolder);
-                // TODO: Don't proceed if the templates list is empty. Need to tell the user
-                //  vscode.window.showErrorMessage
+//              const extensionPath = context.extensionPath; // Not using this
 
-                const extensionPath = context.extensionPath; // Not using this
                 templates.forEach(template => renderTemplate(template, outputFolder, templateVars));
-
             } catch (error) {
+                vscode.window.showErrorMessage("Unable to access templates in folder: " + error);
                 console.error('Error listing templates:', error);
             }
         }
